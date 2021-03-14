@@ -1,7 +1,6 @@
 import React from 'react';
 
-function App() {
-  return (
+const App = () => (
     <div className="App">
       <header className="App-header">
         <p>
@@ -9,7 +8,13 @@ function App() {
         </p>
       </header>
     </div>
-  );
+);
+
+/*
+const foo = () => {
+  console.log("haha")
 }
+
+foo()*/
 
 export default App;
