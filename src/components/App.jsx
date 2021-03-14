@@ -10,7 +10,8 @@ const App = () => (
     </div>
 );
 
-/*const foo = () => {
+/*
+const foo = () => {
   console.log("haha")
 }
 

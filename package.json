@@ -57,7 +57,7 @@
     }
   },
   "lint-staged": {
-    "*.(jsx)": [
+    "*.jsx": [
       "npm run lint",
       "npm run format",
       "git add"
