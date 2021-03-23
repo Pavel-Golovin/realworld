@@ -2,13 +2,15 @@
 .article {
   display: flex;
   justify-content: space-between;
-  height: 125px;
+  max-width: 942px;
+  min-height: 125px;
   background-color: #FFFFFF;
   border-radius: 5px;
   box-shadow: 0 4px 12px 0 rgba(0,0,0, 0.15);
-  padding-left: 19px;
-  padding-top: 15px;
-  padding-right: 14px;
+  padding: 15px 14px 15px 19px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 26px;
 }
 
 .article__header {
@@ -101,4 +103,5 @@
   width: 45px;
   height: 45px;
   margin-left: 12px;
+  border-radius: 50%;
 }

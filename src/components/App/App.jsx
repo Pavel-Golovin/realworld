@@ -1,55 +1,12 @@
-import React, { useState } from 'react';
-import classNames from 'classnames';
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import 'antd/dist/antd.css';
-import { Pagination } from 'antd';
-import { useQuery } from 'react-query';
 import classes from './App.module.scss';
-import Article from '../Article/Article';
-import BaseService from '../../services/baseService';
+import ArticlesListContainer from '../../containers/ArticlesListContainer/ArticlesListContainer';
+import ArticleContainer from '../../containers/ArticleContainer/ArticleContainer';
 
-const Content = ({ page }) => {
-  // eslint-disable-line
-
-  const baseService = new BaseService();
-
-  const { isLoading, isError, error, data } = useQuery(['repoData', page], () => baseService.fetchArticles(page), {
-    staleTime: 10000,
-  });
-
-  if (isLoading) return <p>is Loading...</p>;
-  if (isError) return <p>{`Error: ${error.message}`}</p>;
-
-  console.log(data.articles);
-
-  return (
-    <ul className={classNames(classes.app__list, classes.posts)}>
-      <li className={classes.posts__item}>
-        <Article />
-      </li>
-      <li className={classes.posts__item}>
-        <Article />
-      </li>
-      <li className={classes.posts__item}>
-        <Article />
-      </li>
-      <li className={classes.posts__item}>
-        <Article />
-      </li>
-      <li className={classes.posts__item}>
-        <Article />
-      </li>
-    </ul>
-  );
-};
-
-const App = () => {
-  const [page, setPage] = useState(1);
-
-  const onChangePage = (newPage) => {
-    setPage(newPage);
-  };
-
-  return (
+const App = () => (
+  <Router>
     <div className={classes.app}>
       <header className={classes.app__header}>
         <a className={classes.app__title} href="#">
@@ -62,10 +19,11 @@ const App = () => {
           Sign up
         </a>
       </header>
-      <Content page={page} />
-      <Pagination pageSize={5} page={page} total={500} showSizeChanger={false} onChange={onChangePage} />
+      <Route path="/" component={ArticlesListContainer} exact />
+      <Route path="/articles" component={ArticlesListContainer} exact />
+      <Route path="/articles/:slug" render={({ match }) => <ArticleContainer slug={match.params.slug} />} exact />
     </div>
-  );
-};
+  </Router>
+);
 
 export default App;

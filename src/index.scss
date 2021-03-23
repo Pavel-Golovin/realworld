@@ -25,6 +25,40 @@ a {
   color: black;
 }
 
-.ant-pagination {
-  margin: auto;
+.ant-spin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
 }
+
+.ant-spin .ant-spin-dot {
+  font-size: 110px;
+}
+
+.ant-spin-text {
+  margin-top: 20px;
+}
+
+.ant-pagination {
+  margin: auto auto 0;
+  padding-top: 16px;
+}
+
+.ant-alert {
+  margin-top: 20px;
+  border: 5px solid darkgreen;
+}
+
+.ant-alert .ant-alert-message {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.ant-alert .ant-alert-description {
+  font-size: 20px;
+  font-style: italic;
+  font-weight: bolder;
+}
+

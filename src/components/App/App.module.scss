@@ -1,14 +1,17 @@
 .app {
+  height: auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   padding-bottom: 18px;
+  margin-bottom: 26px;
 }
 
 .app__header {
   display: flex;
   height: 64px;
   background-color: #FFFFFF;
+  box-sizing: content-box;
   padding-top: 16px;
   padding-left: 22px;
   padding-right: 22px;
@@ -36,18 +39,4 @@
   border-radius: 5px;
   padding: 6px 18px 10px;
   margin-left: 19px;
-}
-
-.app__list {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.posts {
-  width: 942px;
-  padding-top: 26px;
-}
-
-.posts__item {
-  margin-bottom: 26px;
 }
