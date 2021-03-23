@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/prefer-default-export
 export const getRandomInt = (min, max) => {
   // eslint-disable-line import/prefer-default-export
   const minValue = Math.ceil(min);

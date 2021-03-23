@@ -47,8 +47,9 @@ const Article = ({ data, isFull = false }) => {
         </div>
         <img
           className={classes.article__userAvatar}
+          // eslint-disable-next-line no-extra-boolean-cast
           src={!!image ? image : noAvatar}
-          alt="Аватар" // eslint-disable-line no-extra-boolean-cast
+          alt="Аватар"
         />
       </section>
     </article>
