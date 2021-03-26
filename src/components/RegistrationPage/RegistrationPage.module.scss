@@ -1,0 +1,119 @@
+.signUp {
+    background-color: #FFFFFF;
+    margin: 20px auto auto;
+    padding: 48px 32px;
+    width: 384px;
+    height: 599px;
+    box-shadow: 0 1px  3px   0 rgba(0,0,0, 0.02),
+                0 2px  7px   0 rgba(0,0,0, 0.03),
+                0 3px  13px  0 rgba(0,0,0, 0.04),
+                0 5px  23px  0 rgba(0,0,0, 0.04),
+                0 9px  44px  0 rgba(0,0,0, 0.05),
+                0 22px 106px 0 rgba(0,0,0, 0.07);
+    border-radius: 6px;
+}
+
+.signUp__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.signUp__title {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+    color: #262626;
+}
+
+.signUp__titleField {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+    color: #262626;
+}
+
+.signUp__input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #D9D9D9;
+    outline: none;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.signUp__input:active,
+.signUp__input:focus,
+.signUp__input:hover {
+    border: 1px solid lightskyblue;
+}
+
+.signUp__agreementLbl {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    padding-left: 24px;
+    padding-top: 8px;
+    margin-top: 21px;
+    border-top: 1px solid #E8E8E8;
+}
+
+.signUp__agreementChBox {
+    position: absolute;
+    left: 0;
+    top: 11.5px;
+}
+
+.signUp__agreement {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+    color: #595959;
+}
+
+.signUp__submitBtn {
+    margin-top: 21px;
+    width: 100%;
+    background: #1890FF;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 0;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.signUp__question {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    color: #8C8C8C;
+    margin-top: 8px;
+}
+
+.errorMessage {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    color: red;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.link {
+    color: deepskyblue;
+}
