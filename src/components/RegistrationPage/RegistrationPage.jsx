@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import classes from './RegistrationPage.module.scss';
 import useFormValidation from '../../hooks/useFromValidation';
+import useRegistrationPage from './useRegistrationPage';
 
 const RegistrationPage = () => {
   const {
@@ -13,8 +14,7 @@ const RegistrationPage = () => {
     passwordRepeatValidation,
     agreementSettingsValidation,
   } = useFormValidation();
-
-  const onSubmitHandler = () => console.log('submitting');
+  const [error, onSubmitHandler] = useRegistrationPage();
 
   return (
     <section className={classes.signUp}>
@@ -30,6 +30,7 @@ const RegistrationPage = () => {
             ref={usernameValidation}
           />
           {errors.username && <p className={classes.errorMessage}>{errors.username.message}</p>}
+          {error ? <p className={classes.errorMessage}>Username {error.username.join()}</p> : null}
         </label>
         <label>
           <p className={classes.signUp__titleField}>Email address</p>
@@ -41,6 +42,7 @@ const RegistrationPage = () => {
             ref={emailValidation}
           />
           {errors.email && <p className={classes.errorMessage}>{errors.email.message}</p>}
+          {error ? <p className={classes.errorMessage}>Email {error.email.join()}</p> : null}
         </label>
         <label>
           <p className={classes.signUp__titleField}>Password</p>
@@ -51,7 +53,7 @@ const RegistrationPage = () => {
             placeholder="Password"
             ref={passwordValidation}
           />
-          {errors.password && <p className={classes.errorMessage}>{errors.password.message}</p>}
+          {errors.password && <p className={classes.errorMessage}>{errors.data}</p>}
         </label>
         <label>
           <p className={classes.signUp__titleField}>Repeat Password</p>

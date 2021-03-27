@@ -6,7 +6,9 @@ import useFormValidation from '../../hooks/useFromValidation';
 const LoginPage = () => {
   const { handleSubmit, errors, emailValidation, passwordValidation } = useFormValidation();
 
-  const onSubmitHandler = () => console.log('submitting...');
+  const onSubmitHandler = (event) => {
+    console.log(event.target);
+  };
 
   return (
     <section className={classes.signIn}>

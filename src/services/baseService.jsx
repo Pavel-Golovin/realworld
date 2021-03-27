@@ -21,4 +21,19 @@ export default class BaseService {
     const singleArticle = await this.fetchDataGet(`articles/${slug}`);
     return singleArticle;
   };
+
+  fetchRegistration = async (formData) => {
+    const response = await fetch(`${this.baseApi}users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({ user: formData }),
+    }).catch((error) => {
+      throw new Error(error);
+    });
+
+    const result = await response.json();
+    return result;
+  };
 }
