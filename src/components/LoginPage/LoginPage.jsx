@@ -2,13 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import classes from './LoginPage.module.scss';
 import useFormValidation from '../../hooks/useFromValidation';
+import useLoginPage from './useLoginPage';
 
 const LoginPage = () => {
   const { handleSubmit, errors, emailValidation, passwordValidation } = useFormValidation();
-
-  const onSubmitHandler = (event) => {
-    console.log(event.target);
-  };
+  const [error, onSubmitHandler] = useLoginPage();
 
   return (
     <section className={classes.signIn}>
@@ -36,6 +34,7 @@ const LoginPage = () => {
           />
           {errors.password && <p className={classes.errorMessage}>{errors.password.message}</p>}
         </label>
+        {error ? <p className={classes.errorMessage}>Email or password {error['email or password'].join()}</p> : null}
         <button className={classes.signIn__submitBtn} type="submit">
           Create
         </button>

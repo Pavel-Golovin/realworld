@@ -36,4 +36,19 @@ export default class BaseService {
     const result = await response.json();
     return result;
   };
+
+  fetchLogin = async (formData) => {
+    const response = await fetch(`${this.baseApi}users/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({ user: formData }),
+    }).catch((error) => {
+      throw new Error(error);
+    });
+
+    const result = await response.json();
+    return result;
+  };
 }
