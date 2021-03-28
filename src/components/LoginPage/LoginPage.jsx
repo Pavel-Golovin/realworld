@@ -1,12 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import classes from './LoginPage.module.scss';
 import useFormValidation from '../../hooks/useFromValidation';
 import useLoginPage from './useLoginPage';
 
 const LoginPage = () => {
   const { handleSubmit, errors, emailValidation, passwordValidation } = useFormValidation();
-  const [error, onSubmitHandler] = useLoginPage();
+  const [token, error, onSubmitHandler] = useLoginPage();
+
+  if (token) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <section className={classes.signIn}>
