@@ -1,0 +1,21 @@
+.app__signIn,
+.app__signUp {
+  color: rgba(0, 0, 0, 0.85);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.app__signIn {
+  margin-left: auto;
+  width: 84px;
+}
+
+.app__signUp {
+  color: #52C41A;
+  border: 1px solid #52C41A;
+  border-radius: 5px;
+  padding: 6px 18px 10px;
+  margin-left: 19px;
+}

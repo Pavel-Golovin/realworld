@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from 'react-query';
-import { setToLocalStorage, getFromLocalStorage } from '../../services/localStorageService';
+import { setToken } from '../../utils/localStorage';
 import BaseService from '../../services/baseService';
 
 const useLoginPage = () => {
@@ -12,20 +12,16 @@ const useLoginPage = () => {
     if (typeof res.errors !== 'undefined') {
       setError(res.errors);
     } else {
-      setToLocalStorage('Token', res.user.token);
+      setToken(res.user.token);
     }
     return res;
   });
-
-  const token = getFromLocalStorage('Token');
-
-  console.log(token);
 
   const onSubmitHandler = (event) => {
     mutation.mutate(event);
   };
 
-  return [token, error, onSubmitHandler];
+  return [error, onSubmitHandler];
 };
 
 export default useLoginPage;

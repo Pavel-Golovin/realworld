@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import isEmail from 'validator/es/lib/isEmail';
+import isURL from 'validator/es/lib/isURL';
 
 const useFormValidation = () => {
   const { handleSubmit, errors, register, watch } = useForm({ mode: 'onChange' });
@@ -13,6 +14,10 @@ const useFormValidation = () => {
   const emailValidation = register({
     required: 'Email is required',
     validate: () => isEmail(watch('email')) || `Email is not valid`,
+  });
+
+  const urlValidation = register({
+    validate: () => isURL(watch('image')) || `Image URL is incorrect`,
   });
 
   const passwordValidation = register({
@@ -38,6 +43,7 @@ const useFormValidation = () => {
     passwordValidation,
     passwordRepeatValidation,
     agreementSettingsValidation,
+    urlValidation,
   };
 };
 

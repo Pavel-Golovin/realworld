@@ -1,0 +1,16 @@
+.app__header {
+  display: flex;
+  height: 51px;
+  background-color: #FFFFFF;
+  box-sizing: content-box;
+  padding: 16px 22px 13px 22px;
+  align-items: center;
+}
+
+.app__title {
+  color: rgba(0, 0, 0, 0.85);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+}

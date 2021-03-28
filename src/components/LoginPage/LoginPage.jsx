@@ -3,16 +3,15 @@ import { Link, Redirect } from 'react-router-dom';
 import classes from './LoginPage.module.scss';
 import useFormValidation from '../../hooks/useFromValidation';
 import useLoginPage from './useLoginPage';
+import { getToken } from '../../utils/localStorage';
 
 const LoginPage = () => {
   const { handleSubmit, errors, emailValidation, passwordValidation } = useFormValidation();
-  const [token, error, onSubmitHandler] = useLoginPage();
+  const [error, onSubmitHandler] = useLoginPage();
 
-  if (token) {
-    return <Redirect to="/" />;
-  }
-
-  return (
+  return getToken() ? (
+    <Redirect to="/" />
+  ) : (
     <section className={classes.signIn}>
       <form className={classes.signIn__form} onSubmit={handleSubmit(onSubmitHandler)}>
         <h2 className={classes.signIn__title}>Sign in</h2>
