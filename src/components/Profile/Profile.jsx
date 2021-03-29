@@ -15,8 +15,8 @@ const Profile = () => {
   } = useFormValidation();
   const [error, mutation, onSubmitHandler] = useProfile();
 
-  return !!mutation.data ? (
-    <Redirect to="/" /> // eslint-disable-line no-extra-boolean-cast
+  return !!mutation.data ? ( // eslint-disable-line no-extra-boolean-cast
+    <Redirect to="/" />
   ) : (
     <section className={classes.Profile}>
       <form className={classes.Profile__form} onSubmit={handleSubmit(onSubmitHandler)}>
