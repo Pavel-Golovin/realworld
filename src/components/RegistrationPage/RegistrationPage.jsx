@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import classes from './RegistrationPage.module.scss';
 import useFormValidation from '../../hooks/useFromValidation';
 import useRegistrationPage from './useRegistrationPage';
+import { getToken } from '../../utils/localStorage';
 
 const RegistrationPage = () => {
   const {
@@ -16,7 +17,9 @@ const RegistrationPage = () => {
   } = useFormValidation();
   const [error, onSubmitHandler] = useRegistrationPage();
 
-  return (
+  return getToken() ? (
+    <Redirect to="/" />
+  ) : (
     <section className={classes.signUp}>
       <form className={classes.signUp__form} onSubmit={handleSubmit(onSubmitHandler)}>
         <h2 className={classes.signUp__title}>Create new account</h2>
