@@ -9,10 +9,17 @@ import BaseService from '../../services/baseService';
 const LoggedInUser = () => {
   const token = getToken();
 
-  const { data, isSuccess } = useQuery(['userInformation', token], () => {
-    const baseService = new BaseService();
-    return baseService.fetchCurrentUser(token);
-  });
+  const { data, isSuccess } = useQuery(
+    ['userInformation', token],
+    () => {
+      const baseService = new BaseService();
+      return baseService.fetchCurrentUser(token);
+    },
+    {
+      staleTime: 10,
+      cacheTime: 0,
+    }
+  );
 
   return isSuccess ? (
     <>

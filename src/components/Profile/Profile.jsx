@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { useMutation } from 'react-query';
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 import classes from './Profile.module.scss';
 import useFormValidation from '../../hooks/useFromValidation';
-import BaseService from '../../services/baseService';
-import { getToken } from '../../utils/localStorage';
+import useProfile from './useProfile';
 
 const Profile = () => {
   const {
@@ -14,21 +13,11 @@ const Profile = () => {
     passwordValidation,
     urlValidation,
   } = useFormValidation();
+  const [error, mutation, onSubmitHandler] = useProfile();
 
-  const [error, setError] = useState(null);
-
-  const mutation = useMutation(async (formData) => {
-    const baseService = new BaseService();
-    const res = await baseService.fetchUpdateUser(getToken(), formData);
-    if (typeof res.errors !== 'undefined') {
-      setError(res.errors);
-    }
-    return res;
-  });
-
-  const onSubmitHandler = (event) => mutation.mutate(event);
-
-  return (
+  return !!mutation.data ? (
+    <Redirect to="/" /> // eslint-disable-line no-extra-boolean-cast
+  ) : (
     <section className={classes.Profile}>
       <form className={classes.Profile__form} onSubmit={handleSubmit(onSubmitHandler)}>
         <h2 className={classes.Profile__title}>Edit Profile</h2>
