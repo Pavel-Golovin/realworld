@@ -82,4 +82,20 @@ export default class BaseService {
     const result = await response.json();
     return result;
   };
+
+  fetchCreateArticle = async (token, formData) => {
+    const response = await fetch(`${this.baseApi}articles`, {
+      method: 'POST',
+      headers: {
+        ContentType: 'application/json;charset=utf-8',
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify(formData),
+    }).catch((error) => {
+      throw new Error(error);
+    });
+
+    const result = await response.json();
+    return result;
+  };
 }

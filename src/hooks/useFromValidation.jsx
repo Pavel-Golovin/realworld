@@ -35,6 +35,10 @@ const useFormValidation = () => {
     required: 'Please accept agreement to continue',
   });
 
+  const articleTitleValidation = register({ required: 'Title is required' });
+  const articleDescriptionValidation = register({ required: 'Description is required' });
+  const articleTextValidation = register({ required: 'Text is required' });
+
   return {
     handleSubmit,
     errors,
@@ -44,6 +48,9 @@ const useFormValidation = () => {
     passwordRepeatValidation,
     agreementSettingsValidation,
     urlValidation,
+    articleTitleValidation,
+    articleDescriptionValidation,
+    articleTextValidation,
   };
 };
 

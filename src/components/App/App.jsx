@@ -8,6 +8,7 @@ import RegistrationPage from '../RegistrationPage/RegistrationPage';
 import LoginPage from '../LoginPage/LoginPage';
 import Header from '../Header/Header';
 import Profile from '../Profile/Profile';
+import FormArticle from '../FormArticle/FormArticle';
 
 const App = () => (
   <Router>
@@ -15,6 +16,7 @@ const App = () => (
       <Route path="/" component={Header} />
       <Route path="/" component={ArticlesListContainer} exact />
       <Route path="/profile" component={Profile} exact />
+      <Route path="/new-article" component={FormArticle} exact />
       <Route path="/sign-up" component={RegistrationPage} exact />
       <Route path="/sign-in" component={LoginPage} exact />
       <Route path="/articles" component={ArticlesListContainer} exact />

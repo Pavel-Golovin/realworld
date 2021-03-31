@@ -23,9 +23,9 @@ const LoggedInUser = () => {
 
   return isSuccess ? (
     <>
-      <a href="#" className={classes.LoggedInUser__createArticle}>
+      <Link to="/new-article" className={classes.LoggedInUser__createArticle}>
         Create article
-      </a>
+      </Link>
       <Link className={classes.LoggedInUser__linkToProfile} to="/profile">
         <p className={classes.LoggedInUser__userName}>{data.user.username}</p>
         <img

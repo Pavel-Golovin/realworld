@@ -17,9 +17,7 @@ const useLoginPage = () => {
     return res;
   });
 
-  const onSubmitHandler = (event) => {
-    mutation.mutate(event);
-  };
+  const onSubmitHandler = (event) => mutation.mutate(event);
 
   return [error, onSubmitHandler];
 };
