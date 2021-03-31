@@ -5,19 +5,7 @@ import useFormArticle from './useFormArticle';
 import useFormValidation from '../../hooks/useFromValidation';
 
 const FormArticle = () => {
-  const {
-    content,
-    title,
-    description,
-    body,
-    newTag,
-    onChangeTitle,
-    onChangeDescription,
-    onChangeBody,
-    onChangeNewTagFld,
-    onClickAddTagBtn,
-    onSubmitHandler,
-  } = useFormArticle();
+  const { content, newTag, onChangeNewTagFld, onClickAddTagBtn, onSubmitHandler } = useFormArticle();
   const {
     handleSubmit,
     errors,
@@ -32,31 +20,17 @@ const FormArticle = () => {
         <h2>Create new article</h2>
         <label className={classes.FormArticle__titleLbl}>
           <p className={classes.FormArticle__fieldName}>Title</p>
-          <input
-            name="title"
-            type="text"
-            placeholder="Title"
-            onChange={onChangeTitle}
-            value={title}
-            ref={articleTitleValidation}
-          />
+          <input name="title" type="text" placeholder="Title" ref={articleTitleValidation} />
         </label>
         {errors.title && <p className={classes.errorMessage}>{errors.title.message}</p>}
         <label className={classes.FormArticle__descriptionLbl}>
           <p className={classes.FormArticle__fieldName}>Short description</p>
-          <input
-            name="description"
-            type="text"
-            placeholder="Title"
-            onChange={onChangeDescription}
-            value={description}
-            ref={articleDescriptionValidation}
-          />
+          <input name="description" type="text" placeholder="Title" ref={articleDescriptionValidation} />
         </label>
         {errors.description && <p className={classes.errorMessage}>{errors.description.message}</p>}
         <label className={classes.FormArticle__textLbl}>
           <p className={classes.FormArticle__fieldName}>Text</p>
-          <textarea name="body" placeholder="Text" onChange={onChangeBody} value={body} ref={articleTextValidation} />
+          <textarea name="body" placeholder="Text" ref={articleTextValidation} />
         </label>
         {errors.body && <p className={classes.errorMessage}>{errors.body.message}</p>}
         <div className={classes.FormArticle__tagsWrp}>

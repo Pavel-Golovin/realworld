@@ -37,21 +37,6 @@ export default class BaseService {
     return result;
   };
 
-  fetchLogin = async (formData) => {
-    const response = await fetch(`${this.baseApi}users/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({ user: formData }),
-    }).catch((error) => {
-      throw new Error(error);
-    });
-
-    const result = await response.json();
-    return result;
-  };
-
   fetchCurrentUser = async (token) => {
     const response = await fetch(`${this.baseApi}user`, {
       method: 'GET',
@@ -83,17 +68,33 @@ export default class BaseService {
     return result;
   };
 
+  fetchLogin = async (formData) => {
+    const response = await fetch(`${this.baseApi}users/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({ user: formData }),
+    }).catch((error) => {
+      throw new Error(error);
+    });
+
+    const result = await response.json();
+    return result;
+  };
+
   fetchCreateArticle = async (token, formData) => {
     const response = await fetch(`${this.baseApi}articles`, {
       method: 'POST',
       headers: {
-        ContentType: 'application/json;charset=utf-8',
+        'Content-Type': 'application/json;charset=utf-8',
         Authorization: `Token ${token}`,
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({ article: formData }),
     }).catch((error) => {
       throw new Error(error);
     });
+    console.log(token);
 
     const result = await response.json();
     return result;
