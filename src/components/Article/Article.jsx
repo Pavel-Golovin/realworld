@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getRandomInt } from '../../utils/functions';
+import useArticle from './useArticle';
 import classes from './Article.module.scss';
 import noAvatar from '../../pictures/noAvatar.jpg';
 
@@ -19,6 +20,7 @@ const Article = ({ data, isFull = false }) => {
     body,
     author: { username, image },
   } = data;
+  const { currentUserName } = useArticle(isFull);
 
   return (
     <article className={classNames(classes.posts__article, classes.article)}>
@@ -52,6 +54,16 @@ const Article = ({ data, isFull = false }) => {
           alt="Аватар автора статьи"
         />
       </section>
+      {isFull && currentUserName === username ? (
+        <div className={classes.article__controlPanel}>
+          <button type="button" className={classes.article__delArticleBtn}>
+            Delete
+          </button>
+          <Link className={classes.article__editArticleBtn} to={`/articles/${slug}/edit`}>
+            Edit
+          </Link>
+        </div>
+      ) : null}
     </article>
   );
 };

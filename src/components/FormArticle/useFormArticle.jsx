@@ -4,9 +4,9 @@ import Tag from '../Tag/Tag';
 import { getToken } from '../../utils/localStorage';
 import BaseService from '../../services/baseService';
 
-const useFormArticle = () => {
+const useFormArticle = (tags = []) => {
   const [newTag, setNewTag] = useState('');
-  const [tagList, updateTagList] = useState(new Set());
+  const [tagList, updateTagList] = useState(new Set(tags));
 
   const onChangeNewTagFld = (event) => setNewTag(event.target.value);
   const onClickAddTagBtn = () => {

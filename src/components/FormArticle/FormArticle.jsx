@@ -1,11 +1,13 @@
 import React from 'react';
 import classes from '../CreateArticlePage/CreateArticlePage.module.scss';
 import TagsList from '../TagsList/TagsList';
-import useFormArticle from './useFormArticle';
 import useFormValidation from '../../hooks/useFromValidation';
+import useFormArticle from './useFormArticle';
 
-const FormArticle = () => {
-  const { content, newTag, onChangeNewTagFld, onClickAddTagBtn, onSubmitHandler } = useFormArticle();
+/* eslint-disable */
+
+const FormArticle = ({ title = '', description = '', body = '', tagList = [] }) => {
+  const { content, newTag, onChangeNewTagFld, onClickAddTagBtn, onSubmitHandler } = useFormArticle(tagList);
   const {
     handleSubmit,
     errors,
@@ -14,21 +16,29 @@ const FormArticle = () => {
     articleTextValidation,
   } = useFormValidation();
 
+  console.log(tagList);
+
   return (
     <form className={classes.FormArticle__form} onSubmit={handleSubmit(onSubmitHandler)}>
       <label className={classes.FormArticle__titleLbl}>
         <p className={classes.FormArticle__fieldName}>Title</p>
-        <input name="title" type="text" placeholder="Title" ref={articleTitleValidation} />
+        <input name="title" type="text" placeholder="Title" ref={articleTitleValidation} defaultValue={title} />
       </label>
       {errors.title && <p className={classes.errorMessage}>{errors.title.message}</p>}
       <label className={classes.FormArticle__descriptionLbl}>
         <p className={classes.FormArticle__fieldName}>Short description</p>
-        <input name="description" type="text" placeholder="Title" ref={articleDescriptionValidation} />
+        <input
+          name="description"
+          type="text"
+          placeholder="Title"
+          ref={articleDescriptionValidation}
+          defaultValue={description}
+        />
       </label>
       {errors.description && <p className={classes.errorMessage}>{errors.description.message}</p>}
       <label className={classes.FormArticle__textLbl}>
         <p className={classes.FormArticle__fieldName}>Text</p>
-        <textarea name="body" placeholder="Text" ref={articleTextValidation} />
+        <textarea name="body" placeholder="Text" ref={articleTextValidation} defaultValue={body} />
       </label>
       {errors.body && <p className={classes.errorMessage}>{errors.body.message}</p>}
       <div className={classes.FormArticle__tagsWrp}>
