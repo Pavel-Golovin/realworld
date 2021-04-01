@@ -98,4 +98,20 @@ export default class BaseService {
     const result = await response.json();
     return result;
   };
+
+  fetchEditArticle = async (token, slug, formData) => {
+    const response = await fetch(`${this.baseApi}articles/${slug}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify({ article: formData }),
+    }).catch((error) => {
+      throw new Error(error);
+    });
+
+    const result = await response.json();
+    return result;
+  };
 }

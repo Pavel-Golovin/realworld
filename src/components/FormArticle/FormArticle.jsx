@@ -6,8 +6,12 @@ import useFormArticle from './useFormArticle';
 
 /* eslint-disable */
 
-const FormArticle = ({ title = '', description = '', body = '', tagList = [] }) => {
-  const { content, newTag, onChangeNewTagFld, onClickAddTagBtn, onSubmitHandler } = useFormArticle(tagList);
+const FormArticle = ({ title = '', description = '', body = '', tagList = [], slug = '', isEditing = false }) => {
+  const { content, newTag, onChangeNewTagFld, onClickAddTagBtn, onSubmitHandler } = useFormArticle(
+    tagList,
+    slug,
+    isEditing
+  );
   const {
     handleSubmit,
     errors,
@@ -15,8 +19,6 @@ const FormArticle = ({ title = '', description = '', body = '', tagList = [] }) 
     articleDescriptionValidation,
     articleTextValidation,
   } = useFormValidation();
-
-  console.log(tagList);
 
   return (
     <form className={classes.FormArticle__form} onSubmit={handleSubmit(onSubmitHandler)}>

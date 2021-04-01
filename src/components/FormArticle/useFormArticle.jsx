@@ -4,7 +4,7 @@ import Tag from '../Tag/Tag';
 import { getToken } from '../../utils/localStorage';
 import BaseService from '../../services/baseService';
 
-const useFormArticle = (tags = []) => {
+const useFormArticle = (tags = [], slug = '', isEditing = false) => {
   const [newTag, setNewTag] = useState('');
   const [tagList, updateTagList] = useState(new Set(tags));
 
@@ -21,7 +21,13 @@ const useFormArticle = (tags = []) => {
 
   const mutation = useMutation(async (data) => {
     const baseService = new BaseService();
-    const res = await baseService.fetchCreateArticle(getToken(), { ...data, tagList: [...tagList] });
+    const token = getToken();
+    let res;
+    if (!isEditing) {
+      res = await baseService.fetchCreateArticle(token, { ...data, tagList: [...tagList] });
+    } else {
+      res = await baseService.fetchEditArticle(token, slug, { ...data, tagList: [...tagList] });
+    }
     return res;
   });
 

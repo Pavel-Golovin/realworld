@@ -26,7 +26,7 @@ const EditArticlePage = ({ slug }) => {
   return token ? (
     <section className={classes.FormArticle__wrapper}>
       <h2>Edit article</h2>
-      <FormArticle title={title} description={description} body={body} tagList={tagList} />
+      <FormArticle title={title} description={description} body={body} tagList={tagList} slug={slug} isEditing={true} />
     </section>
   ) : (
     <Redirect push to="/sign-in" />
