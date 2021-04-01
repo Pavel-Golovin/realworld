@@ -94,7 +94,6 @@ export default class BaseService {
     }).catch((error) => {
       throw new Error(error);
     });
-    console.log(token);
 
     const result = await response.json();
     return result;

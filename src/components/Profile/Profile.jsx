@@ -13,7 +13,7 @@ const Profile = () => {
     passwordValidation,
     urlValidation,
   } = useFormValidation();
-  const [error, mutation, onSubmitHandler] = useProfile();
+  const [user, error, mutation, onSubmitHandler] = useProfile();
 
   return !!mutation.data ? ( // eslint-disable-line no-extra-boolean-cast
     <Redirect to="/" />
@@ -28,6 +28,7 @@ const Profile = () => {
             type="text"
             name="username"
             placeholder="Username"
+            defaultValue={user.username}
             ref={usernameValidation}
           />
           {errors.username && <p className={classes.errorMessage}>{errors.username.message}</p>}
@@ -40,6 +41,7 @@ const Profile = () => {
             name="email"
             type="email"
             placeholder="Email address"
+            defaultValue={user.email}
             ref={emailValidation}
           />
           {errors.email && <p className={classes.errorMessage}>{errors.email.message}</p>}
@@ -63,6 +65,7 @@ const Profile = () => {
             name="image"
             type="url"
             placeholder="Avatar image"
+            defaultValue={user.image}
             ref={urlValidation}
           />
           {errors.image && <p className={classes.errorMessage}>{errors.image.message}</p>}
