@@ -4,10 +4,15 @@ import { format } from 'date-fns';
 import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Popconfirm } from 'antd';
+import { useMutation } from 'react-query';
 import { getRandomInt } from '../../utils/functions';
 import useArticle from './useArticle';
+import 'antd/dist/antd.css';
 import classes from './Article.module.scss';
 import noAvatar from '../../pictures/noAvatar.jpg';
+import BaseService from '../../services/baseService';
+import { getToken } from '../../utils/localStorage';
 
 const Article = ({ data, isFull = false }) => {
   const {
@@ -21,6 +26,15 @@ const Article = ({ data, isFull = false }) => {
     author: { username, image },
   } = data;
   const { currentUserName } = useArticle(isFull);
+
+  const mutation = useMutation(() => {
+    const token = getToken();
+    const baseService = new BaseService();
+    const res = baseService.fetchDeleteArticle(token, slug);
+    return res;
+  });
+
+  const confirm = () => mutation.mutate();
 
   return (
     <article className={classNames(classes.posts__article, classes.article)}>
@@ -56,9 +70,11 @@ const Article = ({ data, isFull = false }) => {
       </section>
       {isFull && currentUserName === username ? (
         <div className={classes.article__controlPanel}>
-          <button type="button" className={classes.article__delArticleBtn}>
-            Delete
-          </button>
+          <Popconfirm title="Are you sure to delete this article?" onConfirm={confirm} okText="Yes" cancelText="No">
+            <button type="button" className={classes.article__delArticleBtn}>
+              Delete
+            </button>
+          </Popconfirm>
           <Link className={classes.article__editArticleBtn} to={`/articles/${slug}/edit`}>
             Edit
           </Link>

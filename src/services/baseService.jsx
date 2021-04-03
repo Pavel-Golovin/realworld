@@ -114,4 +114,19 @@ export default class BaseService {
     const result = await response.json();
     return result;
   };
+
+  fetchDeleteArticle = async (token, slug) => {
+    const response = await fetch(`${this.baseApi}articles/${slug}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: `Token ${token}`,
+      },
+    }).catch((error) => {
+      throw new Error(error);
+    });
+
+    const result = await response.json();
+    return result;
+  };
 }
