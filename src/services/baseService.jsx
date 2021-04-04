@@ -129,4 +129,22 @@ export default class BaseService {
     const result = await response.json();
     return result;
   };
+
+  fetchFavoriteArticle = async (token, slug, isFavorited) => {
+    const method = isFavorited ? 'DELETE' : 'POST';
+    const response = await fetch(`${this.baseApi}articles/${slug}/favorite`, {
+      method,
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: `Token ${token}`,
+      },
+    }).catch((error) => {
+      throw new Error(error);
+    });
+
+    const result = await response.json();
+
+    console.log(result);
+    return result;
+  };
 }
