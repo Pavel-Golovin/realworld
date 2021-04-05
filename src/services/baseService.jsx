@@ -132,7 +132,6 @@ export default class BaseService {
 
   fetchFavoriteArticle = async (token, slug, isFavorited) => {
     const method = isFavorited ? 'DELETE' : 'POST';
-    console.log(method);
     const response = await fetch(`${this.baseApi}articles/${slug}/favorite`, {
       method,
       headers: {

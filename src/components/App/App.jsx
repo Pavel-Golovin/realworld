@@ -16,10 +16,10 @@ const App = () => (
     <div className={classes.app}>
       <Route path="/" component={Header} />
       <Route path="/" component={ArticlesListContainer} exact />
-      <Route path="/profile" component={Profile} exact />
-      <Route path="/new-article" component={CreateArticlePage} exact />
       <Route path="/sign-up" component={RegistrationPage} exact />
       <Route path="/sign-in" component={LoginPage} exact />
+      <Route path="/new-article" component={CreateArticlePage} exact />
+      <Route path="/profile" component={Profile} exact />
       <Route path="/articles/:slug/edit" render={({ match }) => <EditArticlePage slug={match.params.slug} />} exact />
       <Route path="/articles" component={ArticlesListContainer} exact />
       <Route path="/articles/:slug" render={({ match }) => <ArticleContainer slug={match.params.slug} />} exact />

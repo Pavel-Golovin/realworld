@@ -4,12 +4,12 @@ import { getToken } from '../../utils/localStorage';
 
 const useArticlesAuthor = (isFull) => {
   const token = getToken();
-  const queryClient = useQueryClient();
   const queryKey = ['userInformation', token];
   const [currentUserName, setCurrentUserName] = useState('');
+  const userData = useQueryClient().getQueryState(queryKey).data;
   if (token) {
-    if (isFull && queryClient.getQueryState(queryKey).data && !currentUserName) {
-      setCurrentUserName(queryClient.getQueryState(queryKey).data.user.username);
+    if (isFull && userData && !currentUserName) {
+      setCurrentUserName(userData.user.username);
     }
   }
 

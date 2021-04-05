@@ -4,15 +4,14 @@ import BaseService from '../../services/baseService';
 
 const useArticleDel = (slug) => {
   const mutationDel = useMutation(async () => {
-    const token = getToken();
-    const baseService = new BaseService();
-    const res = await baseService.fetchDeleteArticle(token, slug);
+    const res = await new BaseService().fetchDeleteArticle(getToken(), slug);
     return res;
   });
 
-  const confirm = () => mutationDel.mutate();
+  const onConfirmToDelete = () => mutationDel.mutate();
+  const { isSuccess: isDeleted } = mutationDel;
 
-  return { confirm, mutationDel };
+  return { onConfirmToDelete, isDeleted };
 };
 
 export default useArticleDel;
