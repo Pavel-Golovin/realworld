@@ -11,7 +11,7 @@ const ArticlesListContainer = () => {
   const onChangePage = (newPage) => setPage(newPage);
 
   const { isLoading, isError, isSuccess, error, data } = useQuery(
-    ['repoData', page],
+    ['articleContainer', page],
     () => {
       const baseService = new BaseService();
       return baseService.fetchArticles(page);

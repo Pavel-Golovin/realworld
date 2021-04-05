@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useQueryClient } from 'react-query';
 import { getToken } from '../../utils/localStorage';
 
-const useArticle = (isFull) => {
+const useArticlesAuthor = (isFull) => {
   const token = getToken();
   const queryClient = useQueryClient();
   const queryKey = ['userInformation', token];
@@ -16,4 +16,4 @@ const useArticle = (isFull) => {
   return { currentUserName };
 };
 
-export default useArticle;
+export default useArticlesAuthor;

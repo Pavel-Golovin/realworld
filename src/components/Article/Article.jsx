@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { format } from 'date-fns';
 import ReactMarkdown from 'react-markdown';
+import { useMutation, useQueryClient } from 'react-query';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Popconfirm } from 'antd';
-import { useMutation } from 'react-query';
 import { getRandomInt } from '../../utils/functions';
-import useArticle from './useArticle';
+import useArticlesAuthor from './useArticlesAuthor';
+import useArticleDel from './useArticleDel';
 import 'antd/dist/antd.css';
 import classes from './Article.module.scss';
 import noAvatar from '../../pictures/noAvatar.jpg';
 import BaseService from '../../services/baseService';
 import { getToken } from '../../utils/localStorage';
 
+/* eslint-disable */
 const Article = ({ data, isFull = false }) => {
   const {
     title,
     favoritesCount,
+    favorited,
     description,
     tagList,
     createdAt,
@@ -25,16 +28,32 @@ const Article = ({ data, isFull = false }) => {
     body,
     author: { username, image },
   } = data;
-  const { currentUserName } = useArticle(isFull);
+  const { currentUserName } = useArticlesAuthor(isFull);
+  const { confirm, mutationDel } = useArticleDel(slug);
 
-  const mutation = useMutation(() => {
-    const token = getToken();
-    const baseService = new BaseService();
-    const res = baseService.fetchDeleteArticle(token, slug);
-    return res;
-  });
+  const [like, setLike] = useState(favorited);
+  const queryClient = useQueryClient();
 
-  const confirm = () => mutation.mutate();
+  const mutationLike = useMutation(
+    async () => {
+      const baseService = new BaseService();
+      const token = getToken();
+      const res = await baseService.fetchFavoriteArticle(token, slug, like);
+      return res;
+    },
+    {
+      onSuccess: ({ article }) => {
+        queryClient.invalidateQueries(['articleContainer']);
+        setLike(article.favorited);
+      },
+    }
+  );
+
+  const onClickHeart = () => mutationLike.mutate();
+
+  if (mutationDel.isSuccess) {
+    return <Redirect push to="/" />;
+  }
 
   return (
     <article className={classNames(classes.posts__article, classes.article)}>
@@ -43,7 +62,13 @@ const Article = ({ data, isFull = false }) => {
           <Link className={classes.article__title} to={`/articles/${slug}`}>
             {title}
           </Link>
-          <div className={classes.article__heart} />
+          <div
+            onClick={onClickHeart}
+            className={classNames({
+              [classes.article__heart]: true,
+              [classes['article__heart--liked']]: like,
+            })}
+          />
           <span className={classes.article__heartsCount}>{favoritesCount}</span>
         </div>
         <ul className={classes.article__tags}>

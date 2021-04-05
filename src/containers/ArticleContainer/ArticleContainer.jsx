@@ -7,7 +7,7 @@ import BaseService from '../../services/baseService';
 
 const ArticleContainer = ({ slug }) => {
   const { isLoading, isError, error, data } = useQuery(
-    ['articlePage', slug],
+    ['articleContainer', slug],
     () => {
       const baseService = new BaseService();
       return baseService.fetchSingleArticle(slug);
