@@ -27,7 +27,11 @@ const Article = ({ data, isFull = false }) => {
   } = data;
   const { currentUserName } = useArticlesAuthor(isFull);
   const { onConfirmToDelete, isDeleted } = useArticleDel(slug);
-  const { onClickHeart, isLiked } = useLikeArticle(favorited, slug);
+  const { onClickHeart, isLiked, isAuthorized } = useLikeArticle(favorited, slug);
+
+  if (!isAuthorized) {
+    return <Redirect push to="/sign-in" />;
+  }
 
   return isDeleted ? (
     <Redirect push to="/" />
