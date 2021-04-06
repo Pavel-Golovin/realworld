@@ -4,9 +4,9 @@ import classes from './TagsList.module.scss';
 
 /* eslint-disable react/no-array-index-key */
 const TagsList = ({ tagList }) => (
-  <ul className={classes.TagsList}>
+  <ul className={classes.tagsList}>
     {tagList.map((tag, i) => (
-      <li key={i} className={classes.TagsList__item}>
+      <li key={i} className={classes.tagsList__item}>
         {tag}
       </li>
     ))}

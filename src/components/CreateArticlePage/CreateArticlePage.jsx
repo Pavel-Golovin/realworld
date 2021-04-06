@@ -6,8 +6,8 @@ import { getToken } from '../../utils/localStorage';
 
 const CreateArticlePage = () =>
   getToken() ? (
-    <section className={classes.FormArticle__wrapper}>
-      <h2>Create new article</h2>
+    <section className={classes.createArticlePage}>
+      <h2 className={classes.createArticlePage__title}>Create new article</h2>
       <FormArticle />
     </section>
   ) : (

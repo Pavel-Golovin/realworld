@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import classes from './ArticlesList.module.scss';
 
 const ArticlesList = ({ articles }) => (
-  <ul className={classNames(classes.app__list, classes.posts)}>
+  <ul className={classes.articleslist}>
     {articles.map((article) => (
-      <li key={article.props.id} className={classes.posts__item}>
-        {article}
-      </li>
+      <li key={article.props.id}>{article}</li>
     ))}
   </ul>
 );

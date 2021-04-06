@@ -1,0 +1,22 @@
+.createArticlePage {
+  background:  #FFFFFF;
+  width: 938px;
+  min-height: 701px;
+  margin: 43px auto 0;
+  padding: 48px 32px;
+  box-shadow:
+          0 22px 106px rgba(0, 0, 0, 0.07),
+          0 9px  44px  rgba(0, 0, 0, 0.05),
+          0 5px  24px  rgba(0, 0, 0, 0.04),
+          0 3px  13px  rgba(0, 0, 0, 0.03),
+          0 1px  7px   rgba(0, 0, 0, 0.02),
+          0 1px  3px   rgba(0, 0, 0, 0.02);
+  &__title {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+  }
+}

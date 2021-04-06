@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './Tag.module.scss';
 
-const Tag = ({ tagName, onDelete }) => (
-  <div className={classes.Tag}>
-    <p className={classes.Tag__tagName}>{tagName}</p>
-    <button type="button" className={classes.Tag__deleteBtn} onClick={onDelete}>
-      Delete
-    </button>
-  </div>
-);
+const Tag = ({ tagName, onDelete }) =>
+  tagName === '' ? null : (
+    <div className={classes.tag}>
+      <p className={classes.tag__tagName}>{tagName}</p>
+      <button className={classes.tag__deleteBtn} type="button" onClick={onDelete}>
+        Delete
+      </button>
+    </div>
+  );
 
 Tag.defaultProps = {
   tagName: '',

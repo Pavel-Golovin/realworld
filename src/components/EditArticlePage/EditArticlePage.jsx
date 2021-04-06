@@ -1,32 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { useQueryClient } from 'react-query';
+import PropTypes from 'prop-types';
 import classes from './EditArticlePage.module.scss';
-import { getToken } from '../../utils/localStorage';
 import FormArticle from '../FormArticle/FormArticle';
-/* eslint-disable */
+import useEditArticleAutocomplete from './useEditArticleAutocomplete';
 
 const EditArticlePage = ({ slug }) => {
-  const token = getToken();
-  const queryClient = new useQueryClient();
-  const queryKey = ['articlePage', slug];
-  const [capture, setCapture] = useState({
-    title: '',
-    description: '',
-    body: '',
-    tagList: [],
-  });
-
-  if (!capture.title && queryClient.getQueryState(queryKey)) {
-    setCapture(queryClient.getQueryState(queryKey).data.article);
-  }
-
-  const { title, description, body, tagList } = capture;
+  const { token, title, description, body, tagList } = useEditArticleAutocomplete(slug);
 
   return token ? (
-    <section className={classes.FormArticle__wrapper}>
-      <h2>Edit article</h2>
-      <FormArticle title={title} description={description} body={body} tagList={tagList} slug={slug} isEditing={true} />
+    <section className={classes.editArticlePage}>
+      <h2 className={classes.editArticlePage__title}>Edit article</h2>
+      <FormArticle title={title} description={description} body={body} tagList={tagList} slug={slug} isEditing />
     </section>
   ) : (
     <Redirect push to="/sign-in" />
@@ -34,3 +19,7 @@ const EditArticlePage = ({ slug }) => {
 };
 
 export default EditArticlePage;
+
+EditArticlePage.propTypes = {
+  slug: PropTypes.string.isRequired,
+};
