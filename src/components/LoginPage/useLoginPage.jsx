@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useMutation } from 'react-query';
 import { setToken } from '../../utils/localStorage';
-import BaseService from '../../services/baseService';
+import UserService from '../../services/userService';
 
 const useLoginPage = () => {
   const [error, setError] = useState(null);
 
   const mutation = useMutation(async (formData) => {
-    const baseService = new BaseService();
-    const res = await baseService.fetchLogin(formData);
+    const userService = new UserService();
+    const res = await userService.fetchLogin(formData);
     if (typeof res.errors !== 'undefined') {
       setError(res.errors);
     } else {

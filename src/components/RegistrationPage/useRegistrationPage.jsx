@@ -1,14 +1,14 @@
 import { useMutation } from 'react-query';
 import { useState } from 'react';
-import BaseService from '../../services/baseService';
+import UserService from '../../services/userService';
 import { setToken } from '../../utils/localStorage';
 
 const useRegistrationPage = () => {
   const [error, setError] = useState(null);
 
   const mutation = useMutation(async (formData) => {
-    const baseService = new BaseService();
-    const res = await baseService.fetchRegistration(formData);
+    const userService = new UserService();
+    const res = await userService.fetchRegistration(formData);
     if (typeof res.errors !== 'undefined') {
       setError(res.errors);
     } else {

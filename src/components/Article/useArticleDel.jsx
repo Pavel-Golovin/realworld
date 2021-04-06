@@ -1,10 +1,10 @@
 import { useMutation } from 'react-query';
 import { getToken } from '../../utils/localStorage';
-import BaseService from '../../services/baseService';
+import ArticleService from '../../services/articleService';
 
 const useArticleDel = (slug) => {
   const mutationDel = useMutation(async () => {
-    const res = await new BaseService().fetchDeleteArticle(getToken(), slug);
+    const res = await new ArticleService().fetchDeleteArticle(getToken(), slug);
     return res;
   });
 

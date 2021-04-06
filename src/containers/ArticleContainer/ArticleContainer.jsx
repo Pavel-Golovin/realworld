@@ -3,14 +3,14 @@ import { useQuery } from 'react-query';
 import { Alert, Spin } from 'antd';
 import PropTypes from 'prop-types';
 import Article from '../../components/Article/Article';
-import BaseService from '../../services/baseService';
+import ArticleService from '../../services/articleService';
 
 const ArticleContainer = ({ slug }) => {
   const { isLoading, isError, error, data } = useQuery(
     ['articleContainer', slug],
     () => {
-      const baseService = new BaseService();
-      return baseService.fetchSingleArticle(slug);
+      const articleService = new ArticleService();
+      return articleService.fetchSingleArticle(slug);
     },
     { retry: false }
   );

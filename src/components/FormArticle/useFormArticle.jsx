@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from 'react-query';
 import Tag from '../Tag/Tag';
 import { getToken } from '../../utils/localStorage';
-import BaseService from '../../services/baseService';
+import ArticleService from '../../services/articleService';
 
 const useFormArticle = (tags = [], slug = '', isEditing = false) => {
   const [newTag, setNewTag] = useState('');
@@ -20,13 +20,13 @@ const useFormArticle = (tags = [], slug = '', isEditing = false) => {
   };
 
   const mutation = useMutation(async (data) => {
-    const baseService = new BaseService();
+    const articleService = new ArticleService();
     const token = getToken();
     let res;
     if (!isEditing) {
-      res = await baseService.fetchCreateArticle(token, { ...data, tagList: [...tagList] });
+      res = await articleService.fetchCreateArticle(token, { ...data, tagList: [...tagList] });
     } else {
-      res = await baseService.fetchEditArticle(token, slug, { ...data, tagList: [...tagList] });
+      res = await articleService.fetchEditArticle(token, slug, { ...data, tagList: [...tagList] });
     }
     return res;
   });

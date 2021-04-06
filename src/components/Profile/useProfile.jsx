@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
-import BaseService from '../../services/baseService';
+import UserService from '../../services/userService';
 import { getToken } from '../../utils/localStorage';
 
 const useProfile = () => {
@@ -20,8 +20,8 @@ const useProfile = () => {
   }
 
   const mutation = useMutation(async (formData) => {
-    const baseService = new BaseService();
-    const res = await baseService.fetchUpdateUser(token, formData);
+    const userService = new UserService();
+    const res = await userService.fetchUpdateUser(token, formData);
     if (typeof res.errors !== 'undefined') {
       setError(res.errors);
     }

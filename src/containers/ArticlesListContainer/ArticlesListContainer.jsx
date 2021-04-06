@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Pagination, Spin, Alert } from 'antd';
 import { useQuery } from 'react-query';
-import BaseService from '../../services/baseService';
+import ArticleService from '../../services/articleService';
 import ArticlesList from '../../components/ArticlesList/ArticlesList';
 import Article from '../../components/Article/Article';
 
@@ -13,8 +13,8 @@ const ArticlesListContainer = () => {
   const { isLoading, isError, isSuccess, error, data } = useQuery(
     ['articleContainer', page],
     () => {
-      const baseService = new BaseService();
-      return baseService.fetchArticles(page);
+      const articleService = new ArticleService();
+      return articleService.fetchArticles(page);
     },
     { retry: false }
   );
