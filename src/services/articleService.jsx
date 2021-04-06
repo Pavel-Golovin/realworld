@@ -1,6 +1,6 @@
-import BaseService from './baseService';
+export default class ArticleService {
+  baseApi = `https://conduit.productionready.io/api/`;
 
-export default class ArticleService extends BaseService {
   fetchArticles = async (page) => {
     const articles = await fetch(`${this.baseApi}articles?limit=10&offset=${(page - 1) * 5}`).catch((error) => {
       throw new Error(error);

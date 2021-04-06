@@ -1,6 +1,6 @@
-import BaseService from './baseService';
+export default class UserService {
+  baseApi = `https://conduit.productionready.io/api/`;
 
-export default class UserService extends BaseService {
   fetchRegistration = async (formData) => {
     const response = await fetch(`${this.baseApi}users`, {
       method: 'POST',
