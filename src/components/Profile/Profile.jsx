@@ -13,7 +13,7 @@ const Profile = () => {
     passwordValidation,
     urlValidation,
   } = useFormValidation();
-  const [user, error, mutation, onSubmitHandler] = useProfile();
+  const { user, error, mutation, onSubmitHandler } = useProfile();
 
   return !!mutation.data ? ( // eslint-disable-line no-extra-boolean-cast
     <Redirect to="/" />

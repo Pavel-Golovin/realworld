@@ -31,7 +31,7 @@ const useProfile = () => {
   const onSubmitHandler = (event) =>
     mutation.mutate(event, { onSuccess: () => queryClient.invalidateQueries(QUERY_KEY) });
 
-  return [user, error, mutation, onSubmitHandler];
+  return { user, error, mutation, onSubmitHandler };
 };
 
 export default useProfile;

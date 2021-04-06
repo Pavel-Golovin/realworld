@@ -19,7 +19,7 @@ const useRegistrationPage = () => {
 
   const onSubmitHandler = (event) => mutation.mutate(event);
 
-  return [error, onSubmitHandler];
+  return { error, onSubmitHandler };
 };
 
 export default useRegistrationPage;

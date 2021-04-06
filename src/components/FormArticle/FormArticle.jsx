@@ -1,14 +1,14 @@
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import classes from './FormArticle.module.scss';
 import TagsList from '../TagsList/TagsList';
 import useFormValidation from '../../hooks/useFromValidation';
 import useFormArticle from './useFormArticle';
 
-/* eslint-disable */
-
 const FormArticle = ({ title = '', description = '', body = '', tagList = [], slug = '', isEditing = false }) => {
-  const { content, newTag, onChangeNewTagFld, onClickAddTagBtn, onSubmitHandler } = useFormArticle(
+  const { content, newTag, isPosted, onChangeNewTagFld, onClickAddTagBtn, onSubmitHandler } = useFormArticle(
     tagList,
     slug,
     isEditing
@@ -21,7 +21,9 @@ const FormArticle = ({ title = '', description = '', body = '', tagList = [], sl
     articleTextValidation,
   } = useFormValidation();
 
-  return (
+  return isPosted ? (
+    <Redirect push to="/" />
+  ) : (
     <form className={classes.formArticle} onSubmit={handleSubmit(onSubmitHandler)}>
       <label className={classes.formArticle__titleLbl}>
         <p className={classes.formArticle__fieldName}>Title</p>
@@ -83,3 +85,21 @@ const FormArticle = ({ title = '', description = '', body = '', tagList = [], sl
 };
 
 export default FormArticle;
+
+FormArticle.defaultProps = {
+  title: '',
+  description: '',
+  body: '',
+  tagList: [],
+  slug: '',
+  isEditing: false,
+};
+
+FormArticle.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  body: PropTypes.string,
+  tagList: PropTypes.arrayOf(PropTypes.string),
+  slug: PropTypes.string,
+  isEditing: PropTypes.bool,
+};

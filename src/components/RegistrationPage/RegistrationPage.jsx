@@ -15,7 +15,7 @@ const RegistrationPage = () => {
     passwordRepeatValidation,
     agreementSettingsValidation,
   } = useFormValidation();
-  const [error, onSubmitHandler] = useRegistrationPage();
+  const { error, onSubmitHandler } = useRegistrationPage();
 
   return getToken() ? (
     <Redirect to="/" />

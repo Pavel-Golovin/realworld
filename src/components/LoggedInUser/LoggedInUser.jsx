@@ -1,27 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from 'react-query';
 import classes from './LoggedInUser.module.scss';
 import noAvatar from '../../pictures/noAvatar.jpg';
-import { removeToken, getToken } from '../../utils/localStorage';
-import BaseService from '../../services/baseService';
+import { removeToken } from '../../utils/localStorage';
+import useLoggedInUser from './useLoggedInUser';
 
 const LoggedInUser = () => {
-  const token = getToken();
+  const { data, hasDataUser } = useLoggedInUser();
 
-  const { data, isSuccess } = useQuery(
-    ['userInformation', token],
-    () => {
-      const baseService = new BaseService();
-      return baseService.fetchCurrentUser(token);
-    },
-    {
-      staleTime: 10,
-      cacheTime: 0,
-    }
-  );
-
-  return isSuccess ? (
+  return hasDataUser ? (
     <>
       <Link to="/new-article" className={classes.LoggedInUser__createArticle}>
         Create article

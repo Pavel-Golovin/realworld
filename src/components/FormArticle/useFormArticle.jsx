@@ -31,6 +31,8 @@ const useFormArticle = (tags = [], slug = '', isEditing = false) => {
     return res;
   });
 
+  const isPosted = mutation.isSuccess;
+
   const onSubmitHandler = (event) => mutation.mutate(event);
 
   const content = Array.from(tagList).map((tag) => <Tag tagName={tag} onDelete={() => onDeleteTag(tag)} />);
@@ -38,6 +40,7 @@ const useFormArticle = (tags = [], slug = '', isEditing = false) => {
   return {
     content,
     newTag,
+    isPosted,
     onChangeNewTagFld,
     onClickAddTagBtn,
     onSubmitHandler,
